@@ -68,6 +68,11 @@ class User extends Authenticatable // implements MustVerifyEmail
         return $this->belongsToMany(Tweet::class)->withTimestamps();
     }
 
+    public function bookmarks()
+    {
+        return $this->belongsToMany(Tweet::class, 'bookmarks')->withTimestamps();
+    }
+
     public function tweet()
     {
     return $this->belongsTo(Tweet::class);

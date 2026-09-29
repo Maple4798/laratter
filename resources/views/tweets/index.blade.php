@@ -27,6 +27,27 @@
         @endif
       </div>
 
+      <div class="mt-2">
+  @if ($tweet->bookmarkedBy->contains(auth()->id()))
+    <form action="{{ route('bookmarks.destroy', $tweet) }}" method="POST">
+      @csrf
+      @method('DELETE')
+
+      <button type="submit" class="text-red-500 hover:text-red-700">
+        ブックマーク解除
+      </button>
+    </form>
+  @else
+    <form action="{{ route('bookmarks.store', $tweet) }}" method="POST">
+      @csrf
+
+      <button type="submit" class="text-blue-500 hover:text-blue-700">
+        ブックマーク
+      </button>
+    </form>
+  @endif
+</div>
+
     </div>
     @endforeach
   </div>
