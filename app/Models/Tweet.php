@@ -19,11 +19,16 @@ class Tweet extends Model
 
     public function liked()
     {
-    return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function bookmarkedBy()
+    {
+        return $this->belongsToMany(User::class, 'bookmarks')->withTimestamps();
     }
 
     public function comments()
     {
-    return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(Comment::class)->orderBy('created_at', 'desc');
     }
 }
